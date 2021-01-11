@@ -1,0 +1,22 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Chyzh_Syllabus_POLS_304_Spring2021.aux
+The style file: plain.bst
+Database file #1: course_lit.bib
+You're missing a field name---line 20 of file course_lit.bib
+ : title={The Parable of {Google} Flu: Traps in Big Data Analysis.},
+ :                                                                  ,
+I'm skipping whatever remains of this entry
+Name 1 in "Jason T. Rich, and J. Gail Neely, and Randal C. Paniello,and Courtney C. J. Voelker,and D. Phil and Brian Nussenbaum, and Eric W. Wang" has a comma at the end for entry Richetal:2010
+while executing---line 1049 of file plain.bst
+Name 2 in "Jason T. Rich, and J. Gail Neely, and Randal C. Paniello,and Courtney C. J. Voelker,and D. Phil and Brian Nussenbaum, and Eric W. Wang" has a comma at the end for entry Richetal:2010
+while executing---line 1049 of file plain.bst
+Name 4 in "Jason T. Rich, and J. Gail Neely, and Randal C. Paniello,and Courtney C. J. Voelker,and D. Phil and Brian Nussenbaum, and Eric W. Wang" has a comma at the end for entry Richetal:2010
+while executing---line 1049 of file plain.bst
+Warning--empty journal in Lazeretal:2014
+Name 1 in "Jason T. Rich, and J. Gail Neely, and Randal C. Paniello,and Courtney C. J. Voelker,and D. Phil and Brian Nussenbaum, and Eric W. Wang" has a comma at the end for entry Richetal:2010
+while executing---line 1090 of file plain.bst
+Name 2 in "Jason T. Rich, and J. Gail Neely, and Randal C. Paniello,and Courtney C. J. Voelker,and D. Phil and Brian Nussenbaum, and Eric W. Wang" has a comma at the end for entry Richetal:2010
+while executing---line 1090 of file plain.bst
+Name 4 in "Jason T. Rich, and J. Gail Neely, and Randal C. Paniello,and Courtney C. J. Voelker,and D. Phil and Brian Nussenbaum, and Eric W. Wang" has a comma at the end for entry Richetal:2010
+while executing---line 1090 of file plain.bst
+Warning--empty journal in Wilsonetal:2010
+(There were 7 error messages)

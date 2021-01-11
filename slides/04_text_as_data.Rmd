@@ -1,0 +1,16 @@
+install.packages("stylo")
+install.packages("networkD3")
+library(stylo)
+library(magrittr)
+library(rvest)
+library(tidyverse)
+
+
+myanalysis<-stylo.network()
+
+mytable<-read.table("table_with_frequencies.txt", header=TRUE)
+
+genesis<-classify()
+summary(genesis)
+genesis$distance.table
+

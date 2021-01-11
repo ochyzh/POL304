@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>POL 304H1 S</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Olga Chyzh [www.olgachyzh.com]" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# POL 304H1 S
+## Intro to R
+### Olga Chyzh [www.olgachyzh.com]
+
+---
+
+
+
+
+
+## Outline
+
+- Create data
+
+- Input data
+
+- Summarise 
+
+- Interpret
+
+---
+
+## How to Measure Social and Political Constructs?
+
+"If something exists, it exists in some quantity. If it exists in some quantity, it can be measured."  –E. L. Thorndike (1914)
+
+Why are some constructs easier to measure than others?
+
+Examples: the strength of a friendship, the level of corruption in a country, an individual's gender, the quality of a student's graduate school application.
+
+Can you think of other examples?
+
+---
+
+## Exercise 1: Measurement
+
+I have gathered a list of photographs of people (these were the photographs submitted by each person to be used as their professional headshot) I would like for you to guess the age of each of them. Before you start guessing, I would like you to get in break-out groups and discuss the following questions.
+
+1. Which person’s age do you think will be hardest to guess? And what criterion will we use
+to evaluate if it was easiest?
+2. Which person’s age will be easiest? Based on what criterion?
+3. What method will you use to make its guesses? 
+
+---
+
+## Pictures
+
+&lt;img src="./images/age_exercise.png" width="1400px" style="display: block; margin: auto;" /&gt;
+
+---
+## Group Discussion Questions
+
+1. What does the mean identify?
+2. What does the standard deviation or variance measure? What is the relationship between the standard deviation and variance?
+3. What does the average absolute error measure?
+4. What do you think the mean guessed age (the mean of all student guesses) would look like for each of the photos? Does taking the mean of guesses improve the estimates of these people's ages (compared to using just one guess)?
+5. What do you think the standard deviation of guessed age (the standard deviation of all student guesses) would look like for each of the photos? Which ones do you expect to have the largest standard deviation? Why?
+---
+## Two Type of Measurement Error
+
+1. Random (non-systematic)
+    - Not a problem, because the estimate will be correct, on average.
+
+2. Systematic --consistent under- or over-estimate of relevant scores
+    - Can still learn about trends
+    - A problem if want to know the actual values
+---
+
+## Distribution of Error in Estimate 
+
+
+
+&lt;img src="03_more_R_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+---
+## Distribution of Absolute Error in Estimate 
+
+&lt;img src="03_more_R_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Guesses by True Age
+
+&lt;img src="03_more_R_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Distribution of Error by Gender
+
+&lt;img src="03_more_R_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+
+---
+
+## Discussion Questions
+
+Now that you have seen the results, please answer these questions:
+
+1. How did you do?
+
+    a. Who had the smallest/largest average error in the group?
+    
+    b. How much were your guesses off by?
+    
+    c. Why do you think you were off in that specific direction?
+    
+    d. Who had the largest/smallest error variance?
+    
+    e. How much variation did your guesses have?
+    
+2. For which photos did you have the largest errors?
+
+    a. List them.
+    
+    b. Why do you think those photos were hard for you?
+
+---
+## Discussion Questions
+
+1. How did the class do?
+
+   a. Which photo had the largest average error across students? Which one had the
+smallest average error?
+
+   b. What about those photos may have led them to have large or small errors?
+   
+   c. Which photo had the most variation in its guesses? Which had the least?
+   
+   d. What about those photos may have led them to have large or small errors?
+
+4. Mining the data.
+
+   a. Are there any patterns in our errors?
+   
+   b. What patterns did you check? Was there any difference?
+
+---
+
+
+## Discussion Questions   
+   
+5. Beyond guessing ages from pictures...
+
+   a. What does this exercise tell you about measuring social concepts?
+   
+   b. What are some ways to improve our measures of social concepts?
+   
+   c. What are some ways to correct measurement biases?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

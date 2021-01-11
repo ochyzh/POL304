@@ -1,0 +1,212 @@
+---
+title: POL 304H1 S
+subtitle: Intro to R
+author: "Olga Chyzh [www.olgachyzh.com]"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+exclude: true
+editor_options: 
+  chunk_output_type: console
+---
+```{r  setup, message=FALSE, warning=FALSE, include=FALSE}
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  width = 80,
+  tibble.width = 80
+)
+
+knitr::opts_chunk$set(
+  fig.align = "center",  warning=FALSE, message=FALSE
+)
+
+```
+
+
+
+## Outline
+
+- Create data
+
+- Input data
+
+- Summarise 
+
+- Interpret
+
+---
+
+## How to Measure Social and Political Constructs?
+
+"If something exists, it exists in some quantity. If it exists in some quantity, it can be measured."  –E. L. Thorndike (1914)
+
+Why are some constructs easier to measure than others?
+
+Examples: the strength of a friendship, the level of corruption in a country, an individual's gender, the quality of a student's graduate school application.
+
+Can you think of other examples?
+
+---
+
+## Exercise 1: Measurement
+
+I have gathered a list of photographs of people (these were the photographs submitted by each person to be used as their professional headshot) I would like for you to guess the age of each of them. Before you start guessing, I would like you to get in break-out groups and discuss the following questions.
+
+1. Which person’s age do you think will be hardest to guess? And what criterion will we use
+to evaluate if it was easiest?
+2. Which person’s age will be easiest? Based on what criterion?
+3. What method will you use to make its guesses? 
+
+---
+
+## Pictures
+
+```{r, echo=F, out.width= "1400px",fig.align="center"}
+knitr::include_graphics("./images/age_exercise.png")
+```
+
+---
+## Group Discussion Questions
+
+1. What does the mean identify?
+2. What does the standard deviation or variance measure? What is the relationship between the standard deviation and variance?
+3. What does the average absolute error measure?
+4. What do you think the mean guessed age (the mean of all student guesses) would look like for each of the photos? Does taking the mean of guesses improve the estimates of these people's ages (compared to using just one guess)?
+5. What do you think the standard deviation of guessed age (the standard deviation of all student guesses) would look like for each of the photos? Which ones do you expect to have the largest standard deviation? Why?
+---
+## Two Type of Measurement Error
+
+1. Random (non-systematic)
+    - Not a problem, because the estimate will be correct, on average.
+
+2. Systematic --consistent under- or over-estimate of relevant scores
+    - Can still learn about trends
+    - A problem if want to know the actual values
+---
+
+## Distribution of Error in Estimate 
+
+```{r, echo=F, eval=T}
+mymeans<-c(68,66,54,55,70,86,44)
+gender<-c("Woman","Man","Woman","Man","Woman","Man","Woman")
+
+mydata<-as.data.frame(matrix(NA,nrow=35,ncol=7))
+for (i in 1:35) {
+  mydata[i,]=sample.int(100, 7)
+  for (j in 1:7){
+    if (mydata[i,j]<40){
+      mydata[i,j]=100-mydata[i,j]
+    }
+  }
+}
+
+write.csv(mydata,"./data/measurement.csv", row.names=TRUE)
+
+library(magrittr)
+library(tidyverse)
+mydata<-read.csv("./data/measurement.csv", header=TRUE)
+mydata<- mydata   %>% pivot_longer(c(2:8),names_to="photo", values_to="guess") %>% group_by(X) %>% mutate(true=mymeans, gender=gender, dev=guess-true)
+
+```
+
+```{r, echo=F}
+#mydata<-read.csv("./data/measurement.csv", header=TRUE)
+
+library(ggplot2)
+ggplot(data=mydata) + geom_boxplot(aes(x=dev, y=photo)) + geom_vline(aes(xintercept=0), color="red", linetype=2) +
+  coord_flip() +theme_bw()+scale_x_continuous("Error in Guessed Age") + scale_y_discrete("Photo")
+
+
+
+```
+---
+## Distribution of Absolute Error in Estimate 
+
+```{r, echo=F}
+ggplot(data=mydata) + geom_boxplot(aes(x=abs(dev), y=photo)) + geom_vline(aes(xintercept=0), color="red", linetype=2) +
+  coord_flip() +theme_bw()+scale_x_continuous("Absolute Error in Guessed Age") + scale_y_discrete("Photo")
+```
+
+
+---
+
+## Guesses by True Age
+
+```{r, echo=F}
+ggplot(data=mydata) + geom_point(aes(x=true, y=guess, color=factor(gender))) + geom_line(aes(x=true, y=true)) +theme_bw() +scale_x_continuous("True Age") +scale_y_continuous("Guessed Age") + scale_color_manual("", values=c("red","blue"))
+
+
+```
+
+---
+## Distribution of Error by Gender
+
+```{r, echo=F}
+ggplot(data=mydata) + geom_histogram(aes(x=dev,fill=factor(gender))) +theme_bw() +scale_x_continuous("Error in Guess") +scale_y_continuous("Count") + scale_fill_manual("", values=c("red","blue"))
+```
+
+
+
+
+---
+
+## Discussion Questions
+
+Now that you have seen the results, please answer these questions:
+
+1. How did you do?
+
+    a. Who had the smallest/largest average error in the group?
+    
+    b. How much were your guesses off by?
+    
+    c. Why do you think you were off in that specific direction?
+    
+    d. Who had the largest/smallest error variance?
+    
+    e. How much variation did your guesses have?
+    
+2. For which photos did you have the largest errors?
+
+    a. List them.
+    
+    b. Why do you think those photos were hard for you?
+
+---
+## Discussion Questions
+
+1. How did the class do?
+
+   a. Which photo had the largest average error across students? Which one had the
+smallest average error?
+
+   b. What about those photos may have led them to have large or small errors?
+   
+   c. Which photo had the most variation in its guesses? Which had the least?
+   
+   d. What about those photos may have led them to have large or small errors?
+
+4. Mining the data.
+
+   a. Are there any patterns in our errors?
+   
+   b. What patterns did you check? Was there any difference?
+
+---
+
+
+## Discussion Questions   
+   
+5. Beyond guessing ages from pictures...
+
+   a. What does this exercise tell you about measuring social concepts?
+   
+   b. What are some ways to improve our measures of social concepts?
+   
+   c. What are some ways to correct measurement biases?
+
+
